@@ -202,50 +202,96 @@ class List {
     //TODO: member function reverse (Aufgabe 3.7 - Teil 1)
 
 
-    /* ... */
+    // Add new node at front
     void push_front(T const& element) {
-      // TODO: push_front-method (Aufgabe 3.3)
+      ListNode<T>* new_node = new ListNode<T>{element};
+      
+      // If list is not empty, old first el. has to point to its new predecessor
+      if (size_ != 0) {
+        first_->prev = new_node;
+      }
+      // If the new node is the only el., it's also the last el.
+      else {
+        last_ = new_node;
+      }
+      // New node should point to current first el. as next el.
+      new_node->next = first_;
+      // List's new first element is the new node
+      first_ = new_node;
+      size_++;
     }
 
-    /* ... */
+    // Add new node at back
     void push_back(T const& element) {
-      // TODO: push_back-method (Aufgabe 3.3)
+      ListNode<T>* new_node = new ListNode<T>{element};
+      new_node->prev = last_;
+      if (size_ != 0) {
+        last_->next = new_node;
+      }
+      else {
+        first_ = new_node;
+      }
+      last_ = new_node;
+      size_++;
     }
 
-    /* ... */
+    // Remove first node
     void pop_front() {
       if(empty()) {
         throw "List is empty";
       }
-
-      // TODO: remainder of pop_front-method (Aufgabe 3.3)
+      if (size_ > 1) {
+        first_ = first_->next;
+        assert (nullptr != first_->prev);
+        delete first_->prev;
+        first_->prev = nullptr;
+      }
+      else {
+        assert (nullptr != first_);
+        delete first_;
+        first_ = nullptr;
+        last_ = nullptr;
+      }
+      
+      size_--;
     }
 
-    /* ... */
+    // Remove last node
     void pop_back() {
       if(empty()) {
         throw "List is empty";
       }
-
-      // TODO: remainder of pop_back-method (Aufgabe 3.3)
+      if (size_ > 1) {
+        last_ = last_->prev;
+        assert (nullptr != last_->next);
+        delete last_->next;
+        last_->next = nullptr;
+      }
+      else {
+        assert (nullptr != last_);
+        delete last_;
+        last_ = nullptr;
+        first_ = nullptr;
+      }
+      size_--;
     }
 
-    /* ... */
-    T& front() {
+    // Get first element
+    T& front() const {
       if(empty()) {
         throw "List is empty";
       }
 
-      // TODO: remainder of front-method (Aufgabe 3.3)
+      return first_->value;
     }
 
-    /* ... */
-    T& back() {
+    // Get last element
+    T& back() const {
       if(empty()) {
         throw "List is empty";
       }
 
-      // TODO: remainder of back-method (Aufgabe 3.3)
+      return last_->value;
     }
 
     // Check if list is empty
