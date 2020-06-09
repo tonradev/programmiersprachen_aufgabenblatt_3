@@ -167,10 +167,10 @@ class List {
       // make use of operator==
     }
 
-    /* ... */
+    // Destructor calls clear function for deleting all elements
     ~List() {
-      //TODO: Implement via clear-Method (Aufgabe 3.4)
-    } //can not really be tested
+      this->clear();
+    }
 
     /* ... */
     ListIterator<T> begin() {
@@ -186,9 +186,12 @@ class List {
       return {};
     }
 
-    /* ... */ 
-    // test and implement:
-    //TODO: clear()-Method (Aufgabe 3.4)
+    // Clear list - delete all elements
+    void clear() {
+      while(!this->empty()) {
+        this->pop_back();
+      }
+    }
 
 
     /* ... */
@@ -218,7 +221,7 @@ class List {
       new_node->next = first_;
       // List's new first element is the new node
       first_ = new_node;
-      size_++;
+      ++size_;
     }
 
     // Add new node at back
@@ -232,7 +235,7 @@ class List {
         first_ = new_node;
       }
       last_ = new_node;
-      size_++;
+      ++size_;
     }
 
     // Remove first node
@@ -253,7 +256,7 @@ class List {
         last_ = nullptr;
       }
       
-      size_--;
+      --size_;
     }
 
     // Remove last node
@@ -273,7 +276,7 @@ class List {
         last_ = nullptr;
         first_ = nullptr;
       }
-      size_--;
+      --size_;
     }
 
     // Get first element

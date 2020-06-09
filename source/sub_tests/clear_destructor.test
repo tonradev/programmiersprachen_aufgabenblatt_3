@@ -1,0 +1,26 @@
+
+TEST_CASE("Test clear function (deleting all elements)", "[clear]") {
+    List<int> list2{};
+
+    list2.push_front(20);
+    list2.push_front(21);
+    list2.push_front(22);
+    list2.push_front(23);
+
+    list2.clear();
+
+    REQUIRE(true == list2.empty());
+}
+
+TEST_CASE("Test destructor", "[List]") {
+    List<int> list2{};
+
+    list2.push_front(20);
+    list2.push_front(21);
+    list2.push_front(22);
+    list2.push_front(23);
+
+    list2.~List();
+
+    REQUIRE(true == list2.empty());
+}

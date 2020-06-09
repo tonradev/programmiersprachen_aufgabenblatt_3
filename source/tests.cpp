@@ -33,6 +33,10 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 //test cases for element access of list
 #include "sub_tests/front.test"
 #include "sub_tests/back.test"
+
+//test cases for clear
+#include "sub_tests/clear_destructor.test"
+
 /*
 //test cases for retrieving iterators
 #include "sub_tests/begin.test"
