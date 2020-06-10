@@ -136,8 +136,28 @@ class List {
     // Check if list is empty
     // bool empty() const;
 
-    // test and implement:
-    //TODO: Copy-Konstruktor using Deep-Copy semantics (Aufgabe 3.5)
+    // Deep copy constructor
+    List(List<T> const& to_be_copied):
+      size_{0},
+      first_{nullptr},
+      last_{nullptr}
+      {
+      // Can only copy elements if list to be copied is empty
+      if (! to_be_copied.empty() ) {
+        /* Create pointer to current node (the next to be copied),
+        statrt with the first node */
+        ListNode<T>* curr_node = to_be_copied.first_;
+        // Push to target list
+        this->push_back(curr_node->value);
+        // Continiue copying as long as there is a next node
+        while (curr_node->next != nullptr)
+        {
+          curr_node = curr_node->next;
+          this->push_back(curr_node->value);
+        }
+      }
+      
+    }
 
     // test and implement:
     // TODO: Move-Konstruktor (Aufgabe 3.9)

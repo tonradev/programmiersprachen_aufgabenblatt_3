@@ -1,0 +1,18 @@
+
+TEST_CASE("Test deep copy constructor", "[copy_construction]") {
+    List<int> list3{};
+    list3.push_front(1);
+    list3.push_front(2);
+    list3.push_front(55);
+    list3.push_front(364);
+    list3.push_back(870);
+
+    List<int> list4{list3};
+
+    REQUIRE(list4.size() == list3.size());
+    REQUIRE(get_first_pointer(list3) != get_first_pointer(list4));
+    REQUIRE(get_last_pointer(list3) != get_last_pointer(list4));
+    REQUIRE(list3.front() == list4.front());
+    REQUIRE(list3.back() == list4.back());
+    REQUIRE(list3.size() == list4.size());
+}
