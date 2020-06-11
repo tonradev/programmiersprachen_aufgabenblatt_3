@@ -40,6 +40,9 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 //test case definitions for unifying assignment operator
 #include "sub_tests/unifying_assignment_op.test"
 
+//test case definitions for reverse functions
+#include "sub_tests/reverse.test"
+
 /*
 //test cases for retrieving iterators
 #include "sub_tests/begin.test"
@@ -54,7 +57,7 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 */
 
 int main(int argc, char *argv[])
-{    
+{
   return Catch::Session().run(argc, argv);
 }
 

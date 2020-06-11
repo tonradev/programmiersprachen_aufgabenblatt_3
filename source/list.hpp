@@ -231,7 +231,26 @@ class List {
 
     /* ... */
 
-    //TODO: member function reverse (Aufgabe 3.7 - Teil 1)
+    // Reverse function - change list order
+    void reverse() {
+
+      if(empty()) {
+        throw "List is empty";
+      }
+      // Get list size for for-loop
+      int list_size = this->size();
+      // Start with first node as current node
+      ListNode<T>* curr_node = this->first_;
+      // Reverse every node
+      for (int i = 0; i < list_size; ++i) {
+          // Swap node's next + prev pointer
+          std::swap(curr_node->next, curr_node->prev);
+          // Set prev node (former next node) to current node
+          curr_node = curr_node->prev;
+      }
+      // Finally, swap first and last pointer of list head
+      std::swap(first_, last_);
+    }
 
 
     // Add new node at front
@@ -346,8 +365,13 @@ class List {
 };
 
 /* ... */
-//TODO: Freie Funktion reverse 
-//(Aufgabe 3.7 - Teil 2, benutzt Member-Funktion reverse)
+// Free reverse function - return new list with reverse order
+template <typename T>
+List<T> reverse(List<T> const& to_be_reverted) {
+  List<T> result{to_be_reverted};
+  result.reverse();
+  return result;
+}
 
 /* ... */
 //TODO: Freie Funktion operator+ (3.10 - Teil 2)

@@ -1,0 +1,42 @@
+
+TEST_CASE("Test reverse function", "[reverse]") {
+    List<int> li{};
+    li.push_back(11);
+    li.push_back(22);
+    li.push_back(33);
+    li.push_back(44);
+
+    REQUIRE(li.front() == 11);
+    REQUIRE(li.back() == 44);
+
+    li.reverse();
+
+    REQUIRE(li.front() == 44);
+    REQUIRE(li.back() == 11);
+
+    li.pop_back();
+
+    REQUIRE(li.back() == 22);
+
+}
+
+TEST_CASE("Test free reverse function", "[reverse_free]") {
+    List<int> li2{};
+    li2.push_back(11);
+    li2.push_back(22);
+    li2.push_back(33);
+    li2.push_back(44);
+
+    List<int> li2_reverse = reverse(li2);
+
+    REQUIRE(li2_reverse.front() == 44);
+    REQUIRE(li2_reverse.back() == 11);
+
+    REQUIRE(li2.front() == 11);
+    REQUIRE(li2.back() == 44);
+
+    li2_reverse.pop_back();
+
+    REQUIRE(li2_reverse.back() == 22);
+
+}
