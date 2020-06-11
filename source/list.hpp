@@ -182,18 +182,41 @@ class List {
       return *this;
     }
 
-    /* ... */
-    // test and implement:
-
+    // (In)Equality check: operator== and operator!=
     bool operator==(List const& rhs) const
     {
-      //TODO: operator== (Aufgabe 3.8)
+      if (rhs.size_ == this->size_) {
+        // Start with first node of each list
+        ListNode<T>* curr_node_this = this->first_;
+        ListNode<T>* curr_node_rhs = rhs.first_;
+        // Check for every node
+        for (unsigned int i = 0; i < this->size_; ++i) {
+          if (curr_node_this->value == curr_node_rhs->value) {
+            // Set next node as current node
+            curr_node_this = curr_node_this->next;
+            curr_node_rhs = curr_node_rhs->next;
+          }
+          // In case of an unequal value, return false
+          else {
+            return false;
+          }
+        }
+      }
+      // In case of unequal list sizes, return false
+      else {
+        return false;
+      }
     }
 
+    // Inequality operator makes use of equality operator
     bool operator!=(List const& rhs) const
     {
-      //TODO: operator!= (Aufgabe 3.8)
-      // make use of operator==
+      if (! operator==(rhs)) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 
     // Destructor calls clear function for deleting all elements
@@ -364,7 +387,6 @@ class List {
     ListNode<T>* last_;
 };
 
-/* ... */
 // Free reverse function - return new list with reverse order
 template <typename T>
 List<T> reverse(List<T> const& to_be_reverted) {

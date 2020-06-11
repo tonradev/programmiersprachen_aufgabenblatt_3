@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
-
+#include <iostream>
 #include "list.hpp"
 
 
@@ -42,6 +42,9 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 
 //test case definitions for reverse functions
 #include "sub_tests/reverse.test"
+
+//test case definitions for comparison
+#include "sub_tests/comparison.test"
 
 /*
 //test cases for retrieving iterators

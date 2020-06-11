@@ -1,0 +1,26 @@
+
+TEST_CASE("Test comparison", "[comparison]") {
+    List<int> li1{};
+    li1.push_back(1);
+    li1.push_back(2);
+    li1.push_back(3);
+    li1.push_back(4);
+
+    List<int> li2{};
+    li2.push_back(1);
+    li2.push_back(2);
+    li2.push_back(3);
+    li2.push_back(4);
+
+    List<int> li3{};
+    li3.push_back(99);
+    li3.push_back(101);
+    li3.push_back(198);
+    li3.push_back(200);
+
+    REQUIRE(li1 == li2);
+    REQUIRE(li2 == li1);
+    REQUIRE(li1 != li3);
+    REQUIRE(li2 != li3);
+
+}
