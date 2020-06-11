@@ -1,0 +1,20 @@
+
+TEST_CASE("Test unifying assignment operator", "[unifying_assignment_op]") {
+    List<int> list5{};
+    list5.push_front(6);
+    list5.push_front(8);
+    list5.push_front(10);
+    list5.push_front(12);
+
+    List<int> list6{};
+    list6.push_front(5);
+    list6.push_front(7);
+    list6.push_front(9);
+
+    list5 = list6;
+
+    REQUIRE(list5.size() == list6.size());
+    REQUIRE(get_first_pointer(list5) != get_first_pointer(list6));
+    REQUIRE(list5.front() == list6.front());
+    REQUIRE(list5.back() == list6.back());
+}
