@@ -169,14 +169,13 @@ class List {
       //not implemented yet
     }
 
-    /* ... */
-    // test and implement:
-    //TODO: (unifying) Assignment operator (Aufgabe 3.6)
+    // Swap operator
     void swap(List& rhs) {
       std::swap(first_, rhs.first_);
       std::swap(last_,rhs.last_);
     }
 
+    // Unifying assignment operator
     List& operator=(List rhs) {
       swap(rhs);
       size_ = rhs.size_;
