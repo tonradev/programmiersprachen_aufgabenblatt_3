@@ -252,7 +252,7 @@ class List {
 
 
     // Insert element at given position (takes iterator)
-    ListIterator<T> insert(T new_element, ListIterator<T>const& pos) {
+    ListIterator<T> insert(T new_element, ListIterator<T> const& pos) {
       // Special case: Insertion before first element
       if (pos == this->begin()) {
         this->push_front(new_element);
@@ -273,6 +273,27 @@ class List {
       new_node->next = pos.node;
       ++size_;
       return ListIterator<T>{new_node};
+    }
+
+    // Erase element at given position (takes iterator)
+    ListIterator<T> erase(ListIterator<T>& pos){
+      // Cannot delete an element if given iterator refers to nullptr
+      if (nullptr == pos.node) {
+        throw "Iterator does not point to valid node";
+      }
+      // Special case: Erase before first element
+      if (pos == this->begin()) {
+        this->pop_front();
+        return ListIterator<T>{first_};
+      }
+      // Erase element between two nodes
+      ListNode<T>* curr_prev = pos.node->prev;
+      ListNode<T>* curr_next = pos.node->next;
+      curr_prev->next = curr_next;
+      curr_next->prev = curr_prev;
+      delete pos.node;
+      --size_;
+      return ListIterator<T>{curr_next};
     }
 
 
