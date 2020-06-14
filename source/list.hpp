@@ -251,13 +251,30 @@ class List {
     }
 
 
-    /* ... */
-    //TODO: member function insert (Aufgabe 3.13)
-
-    /* ... */
-    //TODO: member function insert (Aufgabe 3.14)
-
-    /* ... */
+    // Insert element at given position (takes iterator)
+    ListIterator<T> insert(T new_element, ListIterator<T>& pos) {
+      // Special case: Insertion before first element
+      if (pos == this->begin()) {
+        this->push_front(new_element);
+        return ListIterator<T>{first_};
+      }
+      // Special case: Insertion at the end of the list
+      else if (pos == this->end())
+      {
+        this->push_back(new_element);
+        return ListIterator<T>{last_};
+      }
+      // Insert element between two nodes
+      ListNode<T>* curr_prev = pos.node->prev;
+      ListNode<T>* new_node = new ListNode<T>{new_element};
+      curr_prev->next = new_node;
+      new_node->prev = curr_prev;
+      pos.node->prev = new_node;
+      new_node->next = pos.node;
+      ++size_;
+      return ListIterator<T>{new_node};
+    }
+    
 
     // Reverse function - change list order
     void reverse() {
