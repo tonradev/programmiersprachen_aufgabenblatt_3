@@ -252,7 +252,7 @@ class List {
 
 
     // Insert element at given position (takes iterator)
-    ListIterator<T> insert(T new_element, ListIterator<T>& pos) {
+    ListIterator<T> insert(T new_element, ListIterator<T>const& pos) {
       // Special case: Insertion before first element
       if (pos == this->begin()) {
         this->push_front(new_element);
@@ -274,7 +274,7 @@ class List {
       ++size_;
       return ListIterator<T>{new_node};
     }
-    
+
 
     // Reverse function - change list order
     void reverse() {
