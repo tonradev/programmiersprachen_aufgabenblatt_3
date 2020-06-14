@@ -64,6 +64,9 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 //erase tests
 #include "sub_tests/erase.test"
 
+//Vector comparison test
+#include "sub_tests/vector_comparison.test"
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

@@ -438,6 +438,29 @@ List<T> reverse(List<T> const& to_be_reverted) {
   return result;
 }
 
+// Free vector-list comparison
+template <typename T>
+bool has_same_content(List<T> const& list, std::vector<T> const& vec) {
+  // If list and vector have different sizes, return false
+  if (list.size() != vec.size()) {
+    return false;
+  }
+  List<T> temp_list{list};
+  std::vector<T> temp_vec{vec};
+  ListIterator<T> it = temp_list.begin();
+  // Check for every list item ...
+  for (unsigned int i = 0; i < temp_list.size(); ++i) {
+    // ... if the respective vector item has the same value
+    if (it.node->value != vec[i]) {
+      // If not, they do not have the same content
+      return false;
+    }
+    // Increment iterator
+    ++it;
+  }
+  return true;
+}
+
 /* ... */
 //TODO: Freie Funktion operator+ (3.10 - Teil 2)
 
