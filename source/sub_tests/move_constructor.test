@@ -11,4 +11,6 @@ TEST_CASE("move constructor", "[constructor]") {
     REQUIRE(0 == list.size());
     REQUIRE(list.empty());
     REQUIRE(4 == list2.size());
+    REQUIRE(list2.front() == 4);
+    REQUIRE(list2.back() == 1);
 }
