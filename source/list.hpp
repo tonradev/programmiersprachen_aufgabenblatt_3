@@ -239,18 +239,13 @@ class List {
       this->clear();
     }
 
-    /* ... */
+    // begin - return iterator referring to first element
     ListIterator<T> begin() {
-
-      //TODO: begin-Method returning an Iterator to the 
-      //      first element in the List (Aufgabe 3.11)
       return iterator{first_};
     }
 
-    /* ... */
+    // end - return iterator referring to element after last element
     ListIterator<T> end() {
-      //TODO: end-Method returning an Iterator to element after (!) 
-      //      the last element in the List (Aufgabe 3.11)
       return iterator{nullptr};
     }
 
