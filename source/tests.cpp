@@ -70,6 +70,12 @@ ListNode<T>* get_last_pointer(List<T> const& list_to_test) {return list_to_test.
 //Move constructor test
 #include "sub_tests/move_constructor.test"
 
+//Initializer list test
+#include "sub_tests/initializer_list.test"
+
+//List concatenation test
+#include "sub_tests/concatenation.test"
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

@@ -173,12 +173,16 @@ class List {
         rhs.last_ = nullptr;
       }
 
-    //TODO: Initializer-List Konstruktor (3.10 - Teil 1)
-    /* ... */
-    // test and implement:
-    List(std::initializer_list<T> ini_list) {
-      //not implemented yet
-    }
+    // Constructor using initializer list
+    List(std::initializer_list<T> ini_list) :
+      size_{0},
+      first_{nullptr},
+      last_{nullptr}
+      {
+        for (auto const& val : ini_list) {
+          this->push_back(val);
+        }
+      }
 
     // Swap operator
     void swap(List& rhs) {
@@ -468,8 +472,15 @@ bool has_same_content(List<T> const& list, std::vector<T> const& vec) {
   return true;
 }
 
-/* ... */
-//TODO: Freie Funktion operator+ (3.10 - Teil 2)
+// operator+ (free function) for concatenating two lists
+template <typename T>
+List<T> operator+(List<T> lhs, List<T> rhs) {
+  List<T> res{lhs};
+  for (auto const& el : rhs) {
+    res.push_back(el);
+  }
+  return res;
+}
 
 
 #endif // # define BUW_LIST_HPP

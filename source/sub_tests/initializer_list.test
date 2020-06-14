@@ -1,0 +1,9 @@
+
+TEST_CASE("Test initializer list", "[initializer_list]") {
+
+    List<int> int_list{9, 5, 38, 100};
+    
+    REQUIRE(4 == int_list.size());
+    REQUIRE(9 == int_list.front());
+    REQUIRE(100 == int_list.back());
+}
