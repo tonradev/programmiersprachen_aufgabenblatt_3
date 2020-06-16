@@ -45,8 +45,7 @@ struct ListIterator {
       throw "Iterator does not point to valid node";
     }
     else {
-      T* ptr = &node->value;
-      return ptr;
+      return &node->value;
     }
   }
 
@@ -136,9 +135,6 @@ class List {
       first_{nullptr},
       last_{nullptr} 
       {}
-
-    // Check if list is empty
-    // bool empty() const;
 
     // Deep copy constructor
     List(List<T> const& to_be_copied):
@@ -249,6 +245,18 @@ class List {
       return iterator{nullptr};
     }
 
+    // begin - return iterator referring to first element
+    // overloaded const function - workaround for missing const iterators
+    ListIterator<T> begin() const {
+      return iterator{first_};
+    }
+
+    // end - return iterator referring to element after last element
+    // overloaded const function - workaround for missing const iterators
+    ListIterator<T> end() const {
+      return iterator{nullptr};
+    }
+
     // Clear list - delete all elements
     void clear() {
       while(!this->empty()) {
@@ -258,7 +266,7 @@ class List {
 
 
     // Insert element at given position (takes iterator)
-    ListIterator<T> insert(T new_element, ListIterator<T> const& pos) {
+    ListIterator<T> insert(T const& new_element, ListIterator<T> const& pos) {
       // Special case: Insertion before first element
       if (pos == this->begin()) {
         this->push_front(new_element);
@@ -469,7 +477,7 @@ bool has_same_content(List<T> const& list, std::vector<T> const& vec) {
 
 // operator+ (free function) for concatenating two lists
 template <typename T>
-List<T> operator+(List<T> lhs, List<T> rhs) {
+List<T> operator+(List<T> const& lhs, List<T> const& rhs) {
   List<T> res{lhs};
   for (auto const& el : rhs) {
     res.push_back(el);
