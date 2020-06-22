@@ -214,9 +214,7 @@ class List {
         }
       }
       // In case of unequal list sizes, return false
-      else {
         return false;
-      }
     }
 
     // Inequality operator makes use of equality operator
@@ -484,6 +482,5 @@ List<T> operator+(List<T> const& lhs, List<T> const& rhs) {
   }
   return res;
 }
-
 
 #endif // # define BUW_LIST_HPP
